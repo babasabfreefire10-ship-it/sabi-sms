@@ -2,148 +2,121 @@
 <!DOCTYPE html>
 <html lang="sq">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#080b09">
-  <title>SABI SMS</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0; min-height: 100vh;
-      background: #080b09; color: #f4fff8;
-      font-family: -apple-system, BlinkMacSystemFont, Arial, sans-serif;
-    }
-    header {
-      padding: 22px 18px; border-bottom: 1px solid #20372a;
-      display: flex; align-items: center; justify-content: space-between;
-    }
-    .logo { font-size: 23px; font-weight: 900; }
-    .logo span { color: #00ef87; }
-    .status {
-      font-size: 11px; color: #00ef87;
-      border: 1px solid #24553a; padding: 7px 10px; border-radius: 20px;
-    }
-    main { max-width: 540px; margin: 38px auto; padding: 0 18px 40px; }
-    .eyebrow { color: #00ef87; font-size: 12px; letter-spacing: 2px; }
-    h1 { font-size: 38px; margin: 12px 0; letter-spacing: -1.5px; }
-    .sub { color: #9ca99f; line-height: 1.6; font-size: 14px; }
-    .panel {
-      margin-top: 26px; padding: 22px;
-      border: 1px solid #23362a; border-radius: 20px;
-      background: linear-gradient(145deg, #111a14, #0b100d);
-    }
-    label { display: block; margin: 18px 0 9px; font-size: 13px; }
-    input, textarea {
-      width: 100%; border: 1px solid #2c4032;
-      background: #080d09; color: white; padding: 15px;
-      border-radius: 11px; font: inherit; outline: none;
-    }
-    input:focus, textarea:focus { border-color: #00ef87; }
-    textarea { resize: vertical; min-height: 125px; }
-    .phone { display: flex; gap: 9px; }
-    .prefix {
-      display: flex; align-items: center; justify-content: center;
-      min-width: 78px; border: 1px solid #2c4032;
-      border-radius: 11px; background: #080d09; color: #00ef87;
-    }
-    button {
-      width: 100%; margin-top: 20px; padding: 16px;
-      background: #00ef87; color: #06170d; border: 0;
-      border-radius: 11px; font-weight: 800; font-size: 15px;
-      cursor: pointer;
-    }
-    button:active { transform: scale(.99); }
-    .notice {
-      margin-top: 16px; padding: 13px; border-radius: 10px;
-      background: #111b14; color: #a8b9ac; font-size: 12px;
-      line-height: 1.6;
-    }
-    #result { margin-top: 15px; font-size: 13px; line-height: 1.6; }
-    .count { color: #8e9d92; text-align: right; font-size: 11px; margin-top: 7px; }
-    footer { text-align: center; color: #657269; font-size: 11px; padding: 20px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#080b09">
+<title>SABI SMS</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;background:#080b09;color:#f4fff8;
+font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
+header{padding:22px;border-bottom:1px solid #26382c}
+.logo{font-size:25px;font-weight:900}
+.logo span{color:#00ef87}
+main{max-width:500px;margin:35px auto;padding:18px}
+h1{font-size:38px;margin:10px 0}
+p{color:#9daaa1;line-height:1.6}
+.panel{background:#101711;border:1px solid #2a4030;
+border-radius:20px;padding:22px}
+label{display:block;margin:17px 0 8px;font-size:14px}
+input,textarea{width:100%;padding:15px;background:#080d09;
+color:white;border:1px solid #354b39;border-radius:11px;font:inherit}
+textarea{min-height:125px;resize:vertical}
+button{width:100%;padding:16px;margin-top:18px;border:0;
+border-radius:11px;background:#00ef87;color:#05160c;
+font-weight:800;font-size:15px}
+.check{display:flex;gap:10px;align-items:start;font-size:12px;
+color:#b4c3b7;line-height:1.5;margin-top:16px}
+.check input{width:auto;margin-top:3px}
+#result{font-size:13px;overflow-wrap:anywhere;margin-top:18px}
+small{color:#85938a;line-height:1.6;display:block;margin-top:15px}
+</style>
 </head>
 <body>
-  <header>
-    <div class="logo">SABI<span>SMS</span></div>
-    <div class="status">● PERSONAL</div>
-  </header>
+<header><div class="logo">SABI<span>SMS</span></div></header>
+<main>
+  <p style="color:#00ef87;letter-spacing:2px">PERSONAL MESSAGING</p>
+  <h1>Dërgo SMS.</h1>
+  <p>Shkruaj numrin shqiptar dhe mesazhin tënd.</p>
 
-  <main>
-    <div class="eyebrow">SIMPLE. PRIVATE. FAST.</div>
-    <h1>Dërgo një SMS.</h1>
-    <p class="sub">
-      Përgatit një mesazh për një numër shqiptar.
-      Dërgimi bëhet përmes aplikacionit të mesazheve të telefonit.
-    </p>
+  <section class="panel">
+    <form id="form">
+      <label for="password">Fjalëkalimi privat</label>
+      <input id="password" type="password" required
+        autocomplete="current-password" placeholder="Fjalëkalimi yt">
 
-    <section class="panel">
-      <form id="smsForm">
-        <label for="phone">Numri i telefonit</label>
-        <div class="phone">
-          <div class="prefix">🇦🇱 +355</div>
-          <input id="phone" type="tel" inputmode="numeric"
-            placeholder="6XXXXXXXX" maxlength="9" required>
-        </div>
+      <label for="phone">Numri shqiptar</label>
+      <input id="phone" type="tel" required
+        inputmode="numeric" placeholder="06XXXXXXXX ose 3556XXXXXXXX">
 
-        <label for="message">Mesazhi yt</label>
-        <textarea id="message" maxlength="1000"
-          placeholder="Shkruaj mesazhin këtu..." required></textarea>
-        <div class="count"><span id="chars">0</span>/1000 karaktere</div>
+      <label for="text">Mesazhi</label>
+      <textarea id="text" required maxlength="1000"
+        placeholder="Shkruaj mesazhin..."></textarea>
 
-        <button type="submit">Hap mesazhet →</button>
-        <div id="result" role="status"></div>
-      </form>
+      <label class="check">
+        <input id="confirm" type="checkbox" required>
+        <span>Konfirmoj se kam të drejtë t'i dërgoj mesazh këtij numri.</span>
+      </label>
 
-      <div class="notice">
-        <strong>Si funksionon?</strong><br>
-        Ky website përgatit SMS-në dhe hap aplikacionin e mesazheve.
-        Mund të aplikohen tarifat e operatorit. Mesazhi nuk dërgohet
-        automatikisht dhe duhet ta konfirmosh vetë në telefon.
-      </div>
-    </section>
-  </main>
+      <button id="send" type="submit">DËRGO SMS →</button>
+      <div id="result" role="status"></div>
+      <small>Mesazhet mund të kenë kosto. Mos e dërgo
+      fjalëkalimin apo kredencialet API te persona të tjerë.</small>
+    </form>
+  </section>
+</main>
 
-  <footer>SABI SMS © 2026 · Personal messaging</footer>
+<script>
+const form = document.getElementById("form");
+const result = document.getElementById("result");
+const button = document.getElementById("send");
 
-  <script>
-    const form = document.getElementById("smsForm");
-    const phone = document.getElementById("phone");
-    const message = document.getElementById("message");
-    const result = document.getElementById("result");
+form.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    message.addEventListener("input", () => {
-      document.getElementById("chars").textContent = message.value.length;
+  let phone = document.getElementById("phone").value
+    .replace(/[\s()+-]/g, "");
+
+  if (phone.startsWith("0")) phone = "355" + phone.slice(1);
+
+  if (!/^3556\d{8}$/.test(phone)) {
+    result.textContent = "Kontrollo numrin shqiptar.";
+    result.style.color = "#ff9292";
+    return;
+  }
+
+  button.disabled = true;
+  button.textContent = "DUKE DËRGUAR...";
+  result.textContent = "Po kontaktohet serveri...";
+  result.style.color = "#00ef87";
+
+  try {
+    const response = await fetch("/api/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        password: document.getElementById("password").value,
+        phone,
+        text: document.getElementById("text").value.trim(),
+        confirm: document.getElementById("confirm").checked
+      })
     });
 
-    form.addEventListener("submit", (event) => {
-      event.preventDefault();
+    const data = await response.json();
+    result.textContent = data.ok
+      ? data.message + (data.messageId ? " ID: " + data.messageId : "")
+      : data.error || "Dërgimi dështoi.";
 
-      const number = phone.value.replace(/[\s-]/g, "");
-      const text = message.value.trim();
-
-      if (!/^6\d{8}$/.test(number)) {
-        result.textContent =
-          "Kontrollo numrin: shkruaj 9 shifra, duke filluar me 6.";
-        result.style.color = "#ff9d9d";
-        return;
-      }
-
-      if (!text) {
-        result.textContent = "Shkruaj një mesazh përpara se të vazhdosh.";
-        result.style.color = "#ff9d9d";
-        return;
-      }
-
-      const destination = "+355" + number;
-      const url = "sms:" + destination + "?body=" + encodeURIComponent(text);
-
-      result.textContent =
-        "Po hap aplikacionin e mesazheve. Kontrollo numrin dhe shtyp Dërgo.";
-      result.style.color = "#00ef87";
-
-      window.location.href = url;
-    });
-  </script>
+    result.style.color = data.ok ? "#00ef87" : "#ff9292";
+  } catch {
+    result.textContent =
+      "Nuk u lidh dot me serverin. Kontrollo konfigurimin.";
+    result.style.color = "#ff9292";
+  } finally {
+    button.disabled = false;
+    button.textContent = "DËRGO SMS →";
+  }
+});
+</script>
 </body>
 </html>
